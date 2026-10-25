@@ -14,6 +14,8 @@
 - Нет git или Node.js: скажи, что именно поставить (Git: https://git-scm.com, Node.js LTS: https://nodejs.org),
   дождись установки и перезапусти проверку. Сам из интернета ничего исполняемого не скачивай.
 - Нужен Node.js 18 или новее.
+- Для видеонавыков (`promo-video`, `photo-slideshow`) нужен ещё `ffmpeg` (`ffmpeg -version`). Нет: предложи поставить
+  (`winget install Gyan.FFmpeg` на Windows, `brew install ffmpeg` на macOS), только с согласия человека, и можно отложить до первого видео.
 
 ## 2. Скачать репозиторий
 
@@ -41,11 +43,11 @@ macOS / Linux:
 bash ~/kaspi-seller-kit/install.sh
 ```
 
-Установщик сам: копирует навыки в `~/.claude/skills`, создаёт базу товаров `~/kaspi-agents`
+Установщик сам: копирует все навыки из `skills/` (`tovarka-agents`, `подбор-поставщика`, `naming`, `promo-video`, `photo-slideshow`, `humanizer`, `stop-slop`) в `~/.claude/skills`, создаёт базу товаров `~/kaspi-agents`
 с шаблонами и `CLAUDE.md`, ставит `1688-cli`. Существующее не перезаписывает. Хочет перезаписать
 (обновление): добавь `-Force` / `--force`, но только после согласия пользователя.
 
-Проверка: в `~/.claude/skills` есть `tovarka-agents` и `подбор-поставщика`; в `~/kaspi-agents`
+Проверка: в `~/.claude/skills` есть все семь папок навыков; в `~/kaspi-agents`
 есть `CLAUDE.md`, `Templates`, `Products.base`; `1688 --help` отвечает.
 
 ## 4. Подключения, которые делает человек
@@ -69,6 +71,10 @@ bash ~/kaspi-seller-kit/install.sh
 |---|---|---|
 | agent-reach | https://github.com/Panniantong/Agent-Reach | читать Instagram, TikTok, YouTube, Reddit без входа: что сейчас выстреливает |
 | last30days | https://github.com/mvanhorn/last30days-skill | что люди обсуждают по теме за 30 дней: сигнал на тренд |
+| video-use | https://github.com/browser-use/video-use | монтаж видео в разговоре. Нужны ffmpeg и ключ ElevenLabs (платный, ключ вводит и хранит только человек). Инструкция: `install.md` в репозитории |
+| hyperframes | https://github.com/heygen-com/hyperframes | видео из кода. Ставится плагином: человек вводит в Claude Code `/plugin marketplace add heygen-com/hyperframes`, затем `/plugin install hyperframes@hyperframes` |
+
+Плагины `superpowers`, `mattpocock-skills`, `vercel` (каталог `claude-plugins-official`) нужны для программирования. Продавцу не предлагай, пока сам не попросит.
 
 ## 6. Сквозная проверка
 
