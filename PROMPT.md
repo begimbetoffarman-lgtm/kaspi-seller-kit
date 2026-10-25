@@ -10,7 +10,7 @@
 
 Шаги:
 1. Проверь окружение: система (Windows, macOS или Linux), `git --version`, `node --version` (нужен Node.js 18 и новее), `npm --version`. Чего нет, скажи, что именно поставить (Git: git-scm.com, Node.js LTS: nodejs.org), и дождись, пока человек поставит.
-2. Склонируй репозиторий в `~/kaspi-seller-kit` (`git clone`). Если папка уже есть, сделай `git pull`. Репозиторий приватный: если clone пишет `Repository not found` или просит вход, человеку нужен аккаунт GitHub и принятое приглашение от владельца; предложи войти через GitHub CLI (`gh auth login`, вход через браузер, пароль и код вводит только человек), потом повтори clone.
+2. Склонируй репозиторий в `~/kaspi-seller-kit` (`git clone`). Если папка уже есть, сделай `git pull`.
 3. Прочитай `INSTALL.md` и `README.md` в склонированной папке и выполни `INSTALL.md` по пунктам. Коротко, что там: запустить установщик (`install.ps1` на Windows через `powershell -ExecutionPolicy Bypass -File`, `install.sh` на macOS и Linux). Он положит навыки `tovarka-agents` и `подбор-поставщика` в `~/.claude/skills`, создаст базу товаров `~/kaspi-agents` с шаблонами и файлом `CLAUDE.md` с правилами, поставит `1688-cli`. Ничего существующего он не перезаписывает.
 4. Проверь результат: оба навыка лежат в `~/.claude/skills`, в `~/kaspi-agents` есть `CLAUDE.md`, `Templates` и `Products.base`, команда `1688 --help` отвечает. В PowerShell эту команду пиши через `& 1688`.
 5. Подключения, которые делает человек. Объясни по каждому, зачем он нужен:
