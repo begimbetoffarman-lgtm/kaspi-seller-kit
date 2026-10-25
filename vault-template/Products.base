@@ -1,0 +1,52 @@
+filters:
+  and:
+    - 'type == "product"'
+formulas:
+  buy_kzt: 'buy_price_cny * cny_rate'
+  cargo_kzt: 'weight_kg * cargo_per_kg'
+  commission_kzt: 'sell_price * kaspi_commission_pct / 100'
+  cost: 'formula.buy_kzt + formula.cargo_kzt + formula.commission_kzt + delivery_to_buyer'
+  margin: 'sell_price - formula.cost'
+  margin_pct: 'if(sell_price > 0, (formula.margin / sell_price * 100).round(1), 0)'
+  roi_pct: 'if(formula.buy_kzt + formula.cargo_kzt > 0, (formula.margin / (formula.buy_kzt + formula.cargo_kzt) * 100).round(1), 0)'
+properties:
+  formula.margin:
+    displayName: Маржа ₸
+  formula.margin_pct:
+    displayName: Маржа %
+  formula.roi_pct:
+    displayName: ROI %
+  formula.cost:
+    displayName: Себестоимость ₸
+  sell_price:
+    displayName: Цена Kaspi ₸
+  no_brand_pct:
+    displayName: Без бренда %
+views:
+  - type: table
+    name: Все товары
+    order:
+      - file.name
+      - status
+      - niche
+      - sell_price
+      - formula.cost
+      - formula.margin
+      - formula.margin_pct
+      - formula.roi_pct
+      - no_brand_pct
+    sort:
+      - property: formula.roi_pct
+        direction: DESC
+  - type: table
+    name: В работе
+    filters:
+      and:
+        - 'status != "идея"'
+        - 'status != "отклонён"'
+    order:
+      - file.name
+      - status
+      - supplier
+      - formula.margin
+      - formula.roi_pct
